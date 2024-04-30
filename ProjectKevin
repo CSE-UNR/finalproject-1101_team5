@@ -1,0 +1,81 @@
+Algorithm for the main function: 
+
+Define image 
+Define filename 
+
+Loop:  (Do while)
+
+Display menu options: 
+				1. Load new image 
+				2. Display current image 
+				3. Edit current image 
+				4, exit the menu 
+Switch (options) 
+
+			1. Load image function 
+
+			2. Display image function 
+
+			3. Edit image function 
+			Loop: ( if else or another switch ) 
+If- no image Need image 
+
+Else/Case - prompt user and display menu 
+Crop 
+Dim 
+Brighten 
+Rotate 90 degrees ( extra credit )
+Save edited image 
+Back to main menu 
+
+Choice 1: Crop image function 
+Choice 2: Dim image function 
+Choice 3: Brighton image function 
+Choice 4: Rotate image function 
+Choice 5: save image function
+Choice 6: return to main menu  
+
+				
+	
+			4.  Exit program 
+End 
+
+Algorithms: 
+
+ Load image:
+ 		Open file in read mode 
+		Read the file into a list 
+		Close the file 
+		Return the image list 
+		If error print error 
+Display image: 
+		If image is empty 
+		Display (No image)
+		Else get the dimensions of the image ( width and height)
+		Loop through each row of the image
+		Loop through each pixel in the row 
+		Convert the pixel value to a character representing its brightness 
+		Print the character 
+		Print a newline to move to the next row 
+Crop image: 
+		Specify crop sides/coordinates from the user 
+		Delete the specified sections of the image based on the input 
+		Return the cropped image 
+Dim image: 
+		Create a copy of the image 
+		Loop through each pixel in the image 
+		Decrease the brightness level by 1
+		Return the image 
+Brighten image: 
+		Create a copy of image 
+		Loop through each pixel in the image
+		Increase the brightness level by 1 
+		Return the image 
+Save image: 
+		Prompt user to save image with a new file name
+		Open file with new file name 
+		Write the image data to the file 
+		Close the file 
+
+
+
