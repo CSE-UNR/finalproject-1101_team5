@@ -1,0 +1,65 @@
+Final Project Design
+Algorithm
+Prompt user with a menu
+The menu includes: new image, display current image, edit current image, and
+exit
+Gather user option
+If user chooses to display current image,
+Display the image
+Return user to original menu
+If user chooses new image,
+Cycle to next file
+Repeat until user is satisfied with image
+Display image
+Return user to the original menu
+If user chooses to edit the image, prompt them the following options:
+If user chooses to crop the image,
+Prompt user to enter a preferred size
+Gather user input
+Display the image with the new size
+Return user to the original menu
+If user chooses to dim the image
+Prompt user to enter how much to dim an image
+Gather user input
+Display new image dimmed.
+Return user to original menu
+If the user chooses to brighten the image,
+Prompt user enter preferred brightness.
+Gather user input
+Display new image with new brightness
+Return to original menu
+If user chooses exit
+Exit the program.
+Main()
+Data: Arrays for image size. Variables for each selection.
+Functionality: Load images
+Menu()
+Input Parameters: None
+Returned Output: None
+Functionality: Display Menu
+displayImage()
+Input Parameters: File pointer
+Retruned Output: None
+Functionality: Displays image
+cycleImage()
+Input Parameters: Multiple file pointers
+Returned Output: None
+Functionality: Cycles through files
+editMenu()
+Input Parameters: None
+Returned Output: None
+Functionality: Displays the edit menu
+cropImage()
+Input Parameters: File pointers, variables for x-coord, y-coord, cropping region in y,
+cropping region in x, a new file pointer where the new image is stored
+Returned Output: cropImage
+Functionality: To crop the image, store image in new file and to display the new cropped
+image 
+dimImage()
+Input Parameters: None
+Returned Output: None
+Functionality: To dim the image then display the image.
+brightenImage()
+Input Parameters: None
+Returned Output: None
+Functionality: To brighten the image then to display new image.
