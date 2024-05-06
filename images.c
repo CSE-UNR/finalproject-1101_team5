@@ -51,9 +51,9 @@ int main(){
 	return 0;
 }
 
-void loadImage(char erinstagram[], char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int *rows, int *cols){
-	printf("Loading imagefrom file: %s\n", erinstagram);
-	FILE *file = fopen (erinstagram, "r");
+void loadImage(char filename[], char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int *rows, int *cols){
+	printf("Loading imagefrom file: %s\n", filename);
+	FILE *file = fopen (filename, "r");
 	if (file == NULL){
 		printf("Can't open file.\n");
 		
@@ -64,14 +64,13 @@ void loadImage(char erinstagram[], char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], i
 	char ch;
 	while((ch = fgetc(file)) != EOF && *rows < MAX_IMAGE_SIZE){
 		if(ch !='\n'){
-			*cols = 0;
-			(*rows)++;
-		}else if(*cols < MAX_IMAGE_SIZE){
 			image[*rows][*cols] = ch;
 			(*cols)++;
+		} else {
+			*rows += 1;
+			*cols = 0;
 		}
 	}
-	
 	fclose(file);
 }
 
@@ -86,7 +85,7 @@ void displayImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols
 }
 
 
-void editMenu(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols){
+void editMenu(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int *rows, int *cols){
 	int choice;
 	
 	do{
