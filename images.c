@@ -12,6 +12,10 @@ void displayImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols
 void editMenu(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols);
 void saveImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols);
 
+
+
+
+
 int main(){
 	int choice;
 	char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE];
@@ -139,33 +143,3 @@ void saveImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols){
 	fclose(file);
 	printf("Image saved to edited_image.txt");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
