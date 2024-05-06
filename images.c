@@ -12,14 +12,15 @@ void displayImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols
 void editMenu(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols);
 void saveImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols);
 
-
-
-
+void cropImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int *rows, int *cols, int startRow, int endRow, int startCol, int endCol);
+void dimImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols, double factor);
+void brightenImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols, double factor);
 
 int main(){
 	int choice;
 	char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE];
 	int rows = 0, cols = 0;
+	char filename[] = "image.txt";
 	
 	do{
 		printf("\nErinstagram Main Menu\n");
@@ -31,13 +32,13 @@ int main(){
 		
 		switch(choice){
 			case 1:
-				loadImage("image.txt", image, &rows, &cols);
+				loadImage(filename, image, &rows, &cols);
 				break;
 			case 2:
 				displayImage(image, rows, cols);
 				break;
 			case 3:
-				editMenu(image, rows, cols);
+				editMenu(image, &rows, &cols);
 				break;
 			case 4:
 				printf("Exiting the program.");
