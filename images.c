@@ -99,21 +99,38 @@ void editMenu(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int *rows, int *cols){
 		scanf("%d", &choice);
 		
 		switch(choice){
-			case 1:
+			case 1: {
 				printf("Cropping the image...\n");
-				//Crop Function
-				break;
-			case 2:
-				printf("Dimming the image...\n");
-				//Dim Function
-				break;
-			case 3:
+				 int startRow, endRow, startCol, endCol;
+                		printf("Enter start row and end row: ");
+                		scanf("%d %d", &startRow, &endRow);
+                		printf("Enter start column and end column: ");
+                		scanf("%d %d", &startCol, &endCol);
+                		cropImage(image, rows, cols, startRow, endRow, startCol, endCol);
+                		break;
+            		}
+			
+			case 2: {
+				printf("Dimming the image...\n");		
+                		double dimFactor;
+               			printf("Enter dimming factor (between 0 and 1): ");
+               			scanf("%lf", &dimFactor);
+                		dimImage(image, *rows, *cols, dimFactor);
+                		break;
+          	 	}
+			
+			case 3: {
 				printf("Brightening the image...\n");
-				//Brighten Function
-				break;
+				double brightenFactor;
+                		printf("Enter brightening factor (> 1): ");
+                		scanf("%lf", &brightenFactor);
+               	 		brightenImage(image, *rows, *cols, brightenFactor);
+                		break;
+			}
+			
 			case 4:
 				printf("Saving image...\n");
-				saveImage(image, rows, cols);
+				saveImage(image, *rows, *cols);
 				break;
 			case 5:
 				printf("Rotating image 90 degrees...\n");
@@ -130,7 +147,7 @@ void editMenu(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int *rows, int *cols){
 void saveImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols){
 	FILE *file = fopen("edited_image.txt", "w");
 	if(file == NULL){
-		printf("Can't open file.");
+		printf("Can't open file.\n");
 		
 		return;
 	}
@@ -138,8 +155,45 @@ void saveImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols){
 		for(int j = 0; j < cols; j++){
 			fprintf(file, "%c", image[i][j]);
 		}
-		fprintf(file, "/n");
+		fprintf(file, "\n");
 	}
 	fclose(file);
-	printf("Image saved to edited_image.txt");
+	printf("Image saved to edited_image.txt\n");
+}
+
+void cropImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int *rows, int *cols, int startRow, int endRow, int startCol, int endCol) {
+    int newRows = endRow - startRow + 1;
+    int newCols = endCol - startCol + 1;
+
+    char croppedImage[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE];
+
+ 	for (int i = startRow; i <= endRow && i < *rows && i - startRow < newRows; i++) {
+        for (int j = startCol; j <= endCol && j < *cols && j - startCol < newCols; j++) {
+            croppedImage[i - startRow][j - startCol] = image[i][j];
+        }
+    }
+
+    *rows = newRows;
+    *cols = newCols;
+    for (int i = 0; i < newRows; i++) {
+        for (int j = 0; j < newCols; j++) {
+            image[i][j] = croppedImage[i][j];
+        }
+    }
+}
+
+void dimImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols, double factor) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            image[i][j] *= factor;
+        }
+    }
+}
+
+void brightenImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols, double factor) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            image[i][j] *= factor;
+        }
+    }
 }
