@@ -208,19 +208,21 @@ void brightenImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int col
 }
 
 void rotateImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int *rows, int *cols) {
-char rotatedImage[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE];
-for( int i = 0; i < *rows; i++) {
-	for(int j = 0; j < *cols; j++) {
-		rotatedImage[j][*rows - 1 - i] = image[i][j];
+	char rotatedImage[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE];
+	for( int i = 0; i < *rows; i++) {
+		for(int j = 0; j < *cols; j++) {
+			rotatedImage[j][*rows - 1 - i] = image[i][j];
+		}
 	}
-}
 
-int turn = *rows;
-*rows = *cols;
-*cols = turn;
 
-for( int i = 0; i < *rows; i++) {
-	for( int j = 0; j < *cols; j++) {
-		image[i][j] = rotatedImage[i][j];
+	int turn = *rows;
+	*rows = *cols;
+	*cols = turn;
+
+	for( int i = 0; i < *rows; i++){
+		for( int j = 0; j < *cols; j++){
+			image[i][j] = rotatedImage[i][j];
+		}
 	}
 }
