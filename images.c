@@ -70,7 +70,7 @@ void loadImage(char filename[], char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int 
 		for(int i = 0; i < len; i++){
 			image[*rows][i] = line[i];
 		}
-		for(int i = 0; i < *cols; i++){
+		for(int i = len; i < *cols; i++){
 			image[*rows][i] = '\0';
 		}
 		if(len > *cols){
