@@ -9,7 +9,7 @@
 
 void loadImage(char erinstagram[], char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int *rows, int *cols);
 void displayImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols);
-void editMenu(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols);
+void editMenu(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int *rows, int *cols);
 void saveImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols);
 
 void cropImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int *rows, int *cols, int startRow, int endRow, int startCol, int endCol);
@@ -61,15 +61,22 @@ void loadImage(char filename[], char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int 
 	}
 	*rows = 0;
 	*cols = 0;
-	char ch;
-	while((ch = fgetc(file)) != EOF && *rows < MAX_IMAGE_SIZE){
-		if(ch !='\n'){
-			image[*rows][*cols] = ch;
-			(*cols)++;
-		} else {
-			*rows += 1;
-			*cols = 0;
+	char line[MAX_IMAGE_SIZE];
+	while(fgets(line, MAX_IMAGE_SIZE, file) != NULL && *rows < MAX_IMAGE_SIZE){
+		int len = 0;
+		while(line[len] != '\0' && line[len] != '\n' && len < MAX_IMAGE_SIZE - 1){
+			len++;
 		}
+		for(int i = 0; i < len; i++){
+			image[*rows][i] = line[i];
+		}
+		for(int i = 0; i < *cols; i++){
+			image[*rows][i] = '\0';
+		}
+		if(len > *cols){
+			*cols = len;
+		}
+		(*rows)++;
 	}
 	fclose(file);
 }

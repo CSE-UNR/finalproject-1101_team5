@@ -1,0 +1,20 @@
+                                        3
+         o                 o            3
+        ooo               ooo           3
+       oo oo             oo oo          3
+      oo   oo           oo   oo         3
+     oo  .  oo         oo  .  oo        3
+      oo   oo           oo   oo         3
+       oo oo             oo oo          3
+        ooo               ooo           3
+         o                 o            3
+                                        3
+                 0  0                   3
+     o                          o       3
+     oo                        oo       3
+      ooo                     ooo       3
+       ooooooooooooooooooooooooo        3
+        o.....................o         3
+         o                   o          3
+          ooooooooooooooooooo           3
+                                        3
