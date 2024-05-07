@@ -15,6 +15,7 @@ void saveImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols);
 void cropImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int *rows, int *cols, int startRow, int endRow, int startCol, int endCol);
 void dimImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols, double factor);
 void brightenImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int cols, double factor);
+void rotateImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int *rows, int *cols);
 
 int main(){
 	int choice;
@@ -141,7 +142,8 @@ void editMenu(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int *rows, int *cols){
 				break;
 			case 5:
 				printf("Rotating image 90 degrees...\n");
-				//Rotate Function
+				rotateImage(image, rows, cols);
+				break;
 			case 6:
 				printf("Returning to Main Menu...\n");
 				break;
@@ -203,4 +205,22 @@ void brightenImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int rows, int col
             image[i][j] *= factor;
         }
     }
+}
+
+void rotateImage(char image[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE], int *rows, int *cols) {
+char rotatedImage[MAX_IMAGE_SIZE][MAX_IMAGE_SIZE];
+for( int i = 0; i < *rows; i++) {
+	for(int j = 0; j < *cols; j++) {
+		rotatedImage[j][*rows - 1 - i] = image[i][j];
+	}
+}
+
+int turn = *rows;
+*rows = *cols;
+*cols = turn;
+
+for( int i = 0; i < *rows; i++) {
+	for( int j = 0; j < *cols; j++) {
+		image[i][j] = rotatedImage[i][j];
+	}
 }
